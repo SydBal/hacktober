@@ -1,0 +1,27 @@
+{
+  "name": "hacktober",
+  "version": "0.0.1",
+  "description": "Simple React app for Hacktoberfest 2018",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sydbal/hacktober"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "react",
+    "hacktober"
+  ],
+  "author": "Dominic Balassone",
+  "contributors": [
+    "Dominic Balassone <dominic.balassone@gmail.com> (https://dominic.balass.one)"
+  ],
+  "license": "MIT"
+}
