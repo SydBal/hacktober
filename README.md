@@ -1,2 +1,5 @@
 # hacktober
-Project created to fulfill the Hacktoberfest 2018 requirements.
+A simple React App deployed with NodeJS.
+
+## Requirements
+NodeJS
