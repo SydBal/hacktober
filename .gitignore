@@ -64,4 +64,4 @@ typings/
 package-lock.json
 
 # ignore bundle.js to be served to client
-dist/bundle.js
+dist/app.js*
