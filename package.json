@@ -2,16 +2,20 @@
   "name": "hacktober",
   "version": "0.0.1",
   "description": "Simple React app for Hacktoberfest 2018",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.13.3"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/sydbal/hacktober"
+  },
+  "author": "Dominic Balassone",
+  "contributors": [
+    "Dominic Balassone <dominic.balassone@gmail.com> (https://dominic.balass.one)"
+  ],
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run server",
+    "server": "node server",
+    "dev": "cross-env DEV=true node server"
   },
   "keywords": [
     "node",
@@ -19,9 +23,19 @@
     "react",
     "hacktober"
   ],
-  "author": "Dominic Balassone",
-  "contributors": [
-    "Dominic Balassone <dominic.balassone@gmail.com> (https://dominic.balass.one)"
-  ],
-  "license": "MIT"
+  "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "express": "^4.13.3",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.4.0"
+  }
 }

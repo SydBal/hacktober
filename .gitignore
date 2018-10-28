@@ -62,3 +62,6 @@ typings/
 
 # avoid unnecessary noise
 package-lock.json
+
+# ignore bundle.js to be served to client
+dist/app.js*
