@@ -20,8 +20,9 @@ module.exports = {
   devtool: `source-map`,
   entry: {
     index: [
-      "webpack-hot-middleware/client",
-      path.join(__dirname, `../components/index.js`),
+      `react-hot-loader/patch`,
+      `webpack-hot-middleware/client`,
+      path.join(__dirname, `../components/index.js`)
     ]
   },
   output: {
@@ -29,10 +30,13 @@ module.exports = {
     publicPath: `/`,
     filename: `app.js`
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: `babel-loader`,
@@ -47,6 +51,5 @@ module.exports = {
         use: [`style-loader`, `css-loader`]
       }
     ]
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  }
 };

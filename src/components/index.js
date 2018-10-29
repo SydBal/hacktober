@@ -1,26 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { AppContainer } from 'react-hot-loader';
+import { AppContainer } from "react-hot-loader";
 import App from "./App";
 
-
+const approot = document.getElementById("root")
 
 ReactDOM.render(
   <AppContainer>
     <App/>
   </AppContainer>, 
-  document.getElementById("root"));
+  approot);
 
+// Enable hot reloads for development
 if (module.hot) {
-  console.log('hot reloading active');
-  module.hot.accept('./App', () => {
-    console.log('doing hot reload');
-    const NextApp = require('./App').App;
+  console.log(`[HMR] Hot Reload Available`);
+
+  module.hot.accept(`./App`, () => {
+    console.log(`[HMR] Hot Reloading...`);
+    const NextApp = App;
     ReactDOM.render(
       <AppContainer>
         <NextApp />
       </AppContainer>,
       approot
     );
+
   });
 }
