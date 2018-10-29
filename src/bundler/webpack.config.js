@@ -1,5 +1,3 @@
-const path = require(`path`);
-
 /* SETTINGS
  *
  * mode: `none`
@@ -7,14 +5,28 @@ const path = require(`path`);
  * 
  * devtool: `source-map`
  *   tells webpack middleware to output to bundle.js file
+ * 
+ * plugins: [
+ *   webpack.HotModuleReplacementPlugin()
+ *     allows browser refreshes on code updates
+ * ]
  */
+
+const webpack = require("webpack");
+const path = require(`path`);
 
 module.exports = {
   mode: `none`,
   devtool: `source-map`,
-  entry: path.join(__dirname, `../components/index.js`),
+  entry: {
+    index: [
+      "webpack-hot-middleware/client",
+      path.join(__dirname, `../components/index.js`),
+    ]
+  },
   output: {
     path: path.join(__dirname, `../../dist/`),
+    publicPath: `/`,
     filename: `app.js`
   },
   module: {
@@ -25,7 +37,8 @@ module.exports = {
         use: {
           loader: `babel-loader`,
           options: {
-						presets: [`@babel/preset-env`, `@babel/preset-react`]
+            presets: [`@babel/preset-env`, `@babel/preset-react`],
+            plugins: ['react-hot-loader/babel']
           }
         },
       },
@@ -34,5 +47,6 @@ module.exports = {
         use: [`style-loader`, `css-loader`]
       }
     ]
-  }
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 };

@@ -1,17 +1,28 @@
 const webpack =  require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackConfig =  require('./webpack.config.js');
+const webpackConfig =  require(`./webpack.config.js`);
+const compiler = webpack(webpackConfig)
+const webpackMiddleware = require(`webpack-dev-middleware`);
+const hmr = require(`webpack-hot-middleware`)
+
 
 const compile = (app) => {
     // Compiles JS and CSS files once for deployment
-    webpack(webpackConfig).run(()=>{
+    compiler.run(()=>{
         console.log(`Frontend JS and CSS compiled.`)
     })
 }
 
 const watch = (app) => {
     // Watches for changes and updates files as they change
-    app.use(webpackMiddleware(webpack(webpackConfig)));
+    app.use(
+        webpackMiddleware(compiler, {
+            noInfo: true,
+            publicPath: webpackConfig.output.publicPath
+        })
+    );
+
+    // Update in the browser when code changes (Hot Module Replacement)
+    app.use(hmr(compiler));
 }
 
 const bundle = (app, dev=false) =>{
