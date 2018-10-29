@@ -9,11 +9,14 @@
  * plugins: [
  *   webpack.HotModuleReplacementPlugin()
  *     allows browser refreshes on code updates
+ *   OpenBrowserPlugin()
+ *     allows webpack to open a browser session
  * ]
  */
 
 const webpack = require("webpack");
 const path = require(`path`);
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
   mode: `none`,
@@ -31,7 +34,10 @@ module.exports = {
     filename: `app.js`
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new OpenBrowserPlugin({ 
+      url: `http://localhost:8080` 
+    })
   ],
   module: {
     rules: [
@@ -41,14 +47,20 @@ module.exports = {
         use: {
           loader: `babel-loader`,
           options: {
-            presets: [`@babel/preset-env`, `@babel/preset-react`],
+            presets: [
+              `@babel/preset-env`,
+              `@babel/preset-react`
+            ],
             plugins: ['react-hot-loader/babel']
           }
         },
       },
       {
         test: /\.(sass|scss|css)$/,
-        use: [`style-loader`, `css-loader`]
+        use: [
+          `style-loader`,
+          `css-loader`
+        ]
       }
     ]
   }
