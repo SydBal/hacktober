@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import App from "./App";
 
-const approot = document.getElementById("root")
+const approot = document.getElementById(`root`)
 
 ReactDOM.render(
   <AppContainer>
@@ -24,6 +24,5 @@ if (module.hot) {
       </AppContainer>,
       approot
     );
-
   });
 }

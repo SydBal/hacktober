@@ -1,5 +1,7 @@
 /* SETTINGS
  *
+ * Ternary conditionals used to seperate dev and prod behavior
+ *
  * mode: `none`
  *   prevents default behavior of webpack and allows control or dev/prod behavior
  * 
@@ -14,18 +16,24 @@
  * ]
  */
 
-const webpack = require("webpack");
-const path = require(`path`);
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const webpack = require(`webpack`)
+const path = require(`path`)
+const OpenBrowserPlugin = require(`open-browser-webpack-plugin`)
 
 module.exports = {
   mode: `none`,
   devtool: `source-map`,
   entry: {
     index: [
-      `react-hot-loader/patch`,
-      `webpack-hot-middleware/client`,
-      path.join(__dirname, `../components/index.js`)
+      path.join(__dirname, `../components/index.js`),
+      ...(process.env.DEV ? 
+        [
+          `webpack-hot-middleware/client`,
+          `react-hot-loader/patch`,
+        ]
+        :
+        []
+      )
     ]
   },
   output: {
@@ -34,10 +42,16 @@ module.exports = {
     filename: `app.js`
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ 
-      url: `http://localhost:8080` 
-    })
+    ...(process.env.DEV ? 
+      [
+        new webpack.HotModuleReplacementPlugin(),
+        new OpenBrowserPlugin({ 
+          url: `http://localhost:8080` 
+        })
+      ]
+      :
+      []
+    )
   ],
   module: {
     rules: [
@@ -64,4 +78,4 @@ module.exports = {
       }
     ]
   }
-};
+}
