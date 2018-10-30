@@ -4,7 +4,7 @@ const path = require(`path`)
 const bundle = require(`./src/bundler/watch.js`)
 
 // Compile CSS and JS. If DEV=true, recompiles when code changes
-bundle(app, process.env.DEV)
+bundle(app)
 
 // Prepare Bundle and Assets for service
 app.use(express.static(path.join(__dirname, `/dist`)))
