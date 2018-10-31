@@ -9,7 +9,7 @@ class TimedText extends Component {
   daysUntilEvent() {
     const one_day = 1000 * 60 * 60 * 24;
 
-    if (this.props.today > this.props.eventDate) {
+    if (this.props.today > this.props.eventDate + (this.props.eventDurationInDays?this.props.eventDurationInDays:0) && this.props.today.getDay() != this.props.eventDate.getDay()) {
       this.props.eventDate.setFullYear(this.props.eventDate.getFullYear() + 1);
     }
 
