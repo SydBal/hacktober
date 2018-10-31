@@ -65,3 +65,6 @@ package-lock.json
 
 # ignore bundle.js to be served to client
 dist/app.js*
+
+# ignore mac stuff
+*.DS_Store
