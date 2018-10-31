@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TimedText from "./TimedText"
 
 import '../../styles/root.scss';
 
@@ -27,41 +28,20 @@ class App extends Component {
     });
   }
 
-  daysUntilHalloween() {
-    const halloween = new Date(this.state.date.getFullYear(), 9, 31);
-    const one_day = 1000 * 60 * 60 * 24;
-
-    if (this.state.date.getMonth() > 9) {
-      halloween.setFullYear(halloween.getFullYear() + 1);
-    }
-
-    return Math.ceil((halloween.getTime() - this.state.date.getTime()) / (one_day))
-  }
-
-  halloweenText() {
-    if (this.daysUntilHalloween() != 0) {
-      return `${this.daysUntilHalloween()} day${this.daysUntilHalloween() > 1 ? `s` : ``} until Halloween!`
-    } else {
-      return `It's Halloween!`
-    }
-  }
-
-  hacktoberText(){
-    let daysUntilHacktober = this.daysUntilHalloween() - 30
-    if (daysUntilHacktober > 0) {
-      return `${daysUntilHacktober} day${daysUntilHacktober > 1 ? `s` : ``} until Hacktober!`
-    } else {
-      return `It's Hacktober!`
-    }
-  }
-
   render() {
     return (
       <div className="container-fluid">
         <div className="container" align="center">
           <FormattedDate date={this.state.date} />
-          <h1>{this.hacktoberText()}</h1>
-          <h1>{this.halloweenText()}</h1>
+          <TimedText
+            today={this.state.date}
+            eventName="Hacktober"
+            eventDate={new Date(this.state.date.getFullYear(), 9, 1)}
+            eventDurationInDays={31}/>
+          <TimedText
+            today={this.state.date}
+            eventName="Halloween"
+            eventDate={new Date(this.state.date.getFullYear(), 9, 31)}/>
           <img className="img-fluid" src="pumpkin.png" />
         </div>
       </div>
@@ -70,7 +50,7 @@ class App extends Component {
 }
 
 const FormattedDate = (props) => {
-  return <h2>It is {props.date.toLocaleDateString()} {props.date.toLocaleTimeString()}.</h2>;
+  return <span>It is {props.date.toLocaleDateString()} {props.date.toLocaleTimeString()}.</span>;
 }
 
 export default App;
