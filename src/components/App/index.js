@@ -43,6 +43,13 @@ class App extends Component {
             eventName="Halloween"
             eventDate={new Date(this.state.date.getFullYear(), 9, 31)}/>
           <img className="img-fluid" src="pumpkin.png" />
+          <div style={{position:"relative", bottom:"0", width:"100%", textAlign:"center"}}>
+            <h4>
+              Brought to you by <a style={{color: "orange"}} href="https://dominic.balass.one/">Dominic Balassone</a>
+              <br/>
+              Find the code on <a style={{color: "orange"}} href="https://github.com/sydbal/hacktober">GitHub</a>
+            </h4>
+          </div>
         </div>
       </div>
     );
